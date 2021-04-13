@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 if(result.isSuccess())
                     Log.e("Info","User logged in successfully");
                 else
-                    Log.e("Info","Error in logging in");
+                    Log.e("MainActivity/Error", result.getError().toString());
             });
         }
     }

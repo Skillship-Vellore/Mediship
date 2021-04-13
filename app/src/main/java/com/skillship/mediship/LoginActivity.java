@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.emailEditText) EditText emailEditText;
     @BindView(R.id.passwordEditText) EditText passwordEditText;
     @BindView(R.id.loginButton) Button loginButton;
+    @BindView(R.id.goToRegister) Button goToRegister;
     @BindView(R.id.progressBar) ProgressBar progressBar;
 
     String appId = "mediship-vhxze";
@@ -61,12 +62,16 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();
                     }else {
-                        Log.e("Info", "Error in logging in");
+                        Log.e("Error", String.valueOf(result.getError()));
                         progressBar.setVisibility(View.INVISIBLE);
                         Snackbar.make(view, "Error in logging in. Please try again", Snackbar.LENGTH_LONG).show();
                     }
                 });
             }
+        });
+
+        goToRegister.setOnClickListener(view -> {
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
     }
 }
