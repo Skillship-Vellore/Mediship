@@ -21,8 +21,7 @@ import io.realm.mongodb.Credentials;
 public class MainActivity extends AppCompatActivity {
 
     String appId = "mediship-vhxze";
-    private App app;
-    private SharedPreferences loginPrefs;
+    public static App app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,20 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         Realm.init(this);
         app = new App(new AppConfiguration.Builder(appId).build());
-        loginPrefs = getSharedPreferences("LoginPrefs", MODE_PRIVATE);
-
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
+        SharedPreferences loginPrefs = getSharedPreferences("LoginPrefs", MODE_PRIVATE);
 
         String email = loginPrefs.getString("Email", null);
         String pass = loginPrefs.getString("Password", null);
@@ -61,5 +47,18 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("MainActivity/Error", result.getError().toString());
             });
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(navView, navController);
     }
 }

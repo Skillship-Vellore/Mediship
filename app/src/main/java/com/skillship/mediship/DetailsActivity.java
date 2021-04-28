@@ -57,7 +57,7 @@ public class DetailsActivity extends AppCompatActivity {
                     User user = app.currentUser();
                     MongoClient mongoClient = user.getMongoClient("mongodb-atlas");
                     MongoDatabase mongoDatabase = mongoClient.getDatabase("mediship");
-                    MongoCollection<Document> collection = mongoDatabase.getCollection("userdata");
+                    MongoCollection<Document> collection = mongoDatabase.getCollection("patients");
 
                     RadioButton selectedGender = findViewById(genderRadio.getCheckedRadioButtonId());
 
