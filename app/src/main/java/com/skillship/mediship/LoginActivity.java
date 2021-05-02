@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -26,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.emailEditText) EditText emailEditText;
     @BindView(R.id.passwordEditText) EditText passwordEditText;
     @BindView(R.id.loginButton) Button loginButton;
-    @BindView(R.id.goToRegister) Button goToRegister;
+    @BindView(R.id.goToRegister) TextView goToRegister;
     @BindView(R.id.progressBar) ProgressBar progressBar;
 
     String appId = "mediship-vhxze";
@@ -72,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
 
         goToRegister.setOnClickListener(view -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            finish();
         });
     }
 }

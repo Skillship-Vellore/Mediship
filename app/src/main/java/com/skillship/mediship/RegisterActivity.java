@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -31,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     @BindView(R.id.emailRegText) EditText emailRegText;
     @BindView(R.id.passRegText) EditText passRegText;
     @BindView(R.id.confRegText) EditText confRegText;
+    @BindView(R.id.goToLogin) TextView goToLogin;
     @BindView(R.id.registerBtn) Button registerBtn;
     @BindView(R.id.regProgressBar) ProgressBar regProgressBar;
 
@@ -71,6 +73,11 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
             }
+        });
+
+        goToLogin.setOnClickListener(view -> {
+            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            finish();
         });
     }
 }
